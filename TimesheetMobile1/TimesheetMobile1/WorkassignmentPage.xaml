@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TimesheetMobile1.WorkassignmentPage">
+    <ContentPage.Content>
+        
+            <StackLayout>
+                <Button Text="Employees sivulle"  Clicked="LoadEmployees"></Button>
+                <Button Text="Load Workassignments"  Clicked="LoadWorkassignments"></Button>
+
+                <ListView  x:Name="workassignmentList">
+
+                </ListView>
+                
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Latitude: "></Label>
+                <Label x:Name="latitudeLabel" Text="0.00"></Label>
+                <Label Text="´Longitude: "></Label>
+                <Label x:Name="longitudeLabel" Text="0.00"></Label>
+                
+            </StackLayout>
+                
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Start Work" Clicked="StartWork"></Button>
+                <Button Text="Stop Work" Clicked="StopWork"></Button>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
