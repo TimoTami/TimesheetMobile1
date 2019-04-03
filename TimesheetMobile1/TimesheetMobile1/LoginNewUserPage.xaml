@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TimesheetMobile1.LoginNewUserPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <Entry x:Name="ENimi" Text="Etunimi"></Entry>
+            <Entry x:Name="SNimi" Text="Sukunimi"></Entry>
+            <Entry x:Name="PNum" Text="Puh. numero"></Entry>
+            <Entry x:Name="SPos" Text="Sähköposti"></Entry>
+            <Entry x:Name="UusiTunnus" Text="Käyttäjätunnus"></Entry>
+            <Entry x:Name="UusiSana" IsPassword="True" Text="Salasana"></Entry>
+            <Entry x:Name="UusiSanaUudestaan" IsPassword="True" Text="Salasana uudestaan"></Entry>
+
+            <Button Text="Valmis" Clicked="NewUser"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

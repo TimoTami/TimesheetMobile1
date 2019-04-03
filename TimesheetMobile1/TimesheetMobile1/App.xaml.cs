@@ -11,7 +11,7 @@ namespace TimesheetMobile1
 		{
 			InitializeComponent();
 
-            MainPage = new NavigationPage(new EmployeePage());
+            MainPage = new NavigationPage(new LoginPage());
         }
 
 		protected override void OnStart ()
