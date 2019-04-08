@@ -4,8 +4,9 @@
              x:Class="TimesheetMobile1.EmployeePage">
     <ContentPage.Content>
         <StackLayout Padding="0">
-            <Button Text="Workassignments sivulle" Clicked="LoadWorkassignments"></Button>
+            
             <Button Text="Load Employees" Clicked="LoadEmployees"></Button>
+            <Button Text="Kirjaudu ulos" Clicked="Logout"></Button>
 
             <ListView Margin="10,10,10,10" HeightRequest="400" x:Name="employeeList">
                 

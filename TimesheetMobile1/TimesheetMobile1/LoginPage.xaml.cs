@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using TimesheetMobile1.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Security.Cryptography;
 
 namespace TimesheetMobile1
 {
@@ -22,41 +23,56 @@ namespace TimesheetMobile1
 		}
         public async void KirjauduSisaan(object sender, EventArgs e)
         {
+            string username = "";
+            string password = ""; 
 
-            //NewUserModel data = new NewUserModel()
-            //{
-            //username = Tunnus1.Text,
-            //password = Sana1.Text
-            //};
-
-            string username = Tunnus1.Text;
-            string password = Sana1.Text;
-            
-
-
-
-            HttpClient client = new HttpClient();
-            var uri = new Uri(string.Format("https://joonanmobiili.azurewebsites.net/api/login?username=" + username + "&password=" + password));
-            
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = await client.GetAsync(uri);
-            if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
+            if (!string.IsNullOrEmpty(Sana1.Text)&& !string.IsNullOrEmpty(Tunnus1.Text))
             {
-                var errorMessage1 = response.Content.ReadAsStringAsync().Result.Replace("\\", "").Trim(new char[1]
+                using (var sha = SHA256.Create())
                 {
-                '"'
-                });
-                //Toast.MakeText(this, errorMessage1, ToastLength.Long).Show();
+                    var bytes = Encoding.UTF8.GetBytes(Sana1.Text);
+                    var hash = sha.ComputeHash(bytes);
 
-                await Navigation.PushAsync(new EmployeePage());
+
+                    password = Convert.ToBase64String(hash);
+                    username = Tunnus1.Text;
+                    //return Convert.ToBase64String(hash);
+                }
             }
             else
             {
-                var errorMessage1 = response.Content.ReadAsStringAsync().Result.Replace("\\", "").Trim(new char[1]
+                await DisplayAlert("", "Syötä käyttäjätunnus ja salasana.", "OK");
+            }
+
+
+            if (!string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(username))
+            {
+
+                HttpClient client = new HttpClient();
+                var uri = new Uri(string.Format("https://joonanmobiili.azurewebsites.net/api/login?username=" + username + "&password=" + password));
+
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response = await client.GetAsync(uri);
+                if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
                 {
+                    var errorMessage1 = response.Content.ReadAsStringAsync().Result.Replace("\\", "").Trim(new char[1]
+                    {
                 '"'
-                });
-                //Toast.MakeText(this, errorMessage1, ToastLength.Long).Show();
+                    });
+                    await DisplayAlert("", errorMessage1, "Close");
+                    //Toast.MakeText(this, errorMessage1, ToastLength.Long).Show();
+
+                    await Navigation.PushAsync(new EmployeePage());
+                }
+                else
+                {
+                    var errorMessage1 = response.Content.ReadAsStringAsync().Result.Replace("\\", "").Trim(new char[1]
+                    {
+                '"'
+                    });
+                    await DisplayAlert("", errorMessage1, "Close");
+                    //Toast.MakeText(this, errorMessage1, ToastLength.Long).Show();
+                }
             }
 
         }

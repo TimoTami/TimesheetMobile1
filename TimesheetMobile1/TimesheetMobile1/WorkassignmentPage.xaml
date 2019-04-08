@@ -7,8 +7,9 @@
             <StackLayout>
                 <Button Text="Employees sivulle"  Clicked="LoadEmployees"></Button>
                 <Button Text="Load Workassignments"  Clicked="LoadWorkassignments"></Button>
+            <Button Text="Kirjaudu ulos" Clicked="Logout"></Button>
 
-                <ListView  x:Name="workassignmentList">
+            <ListView  x:Name="workassignmentList">
 
                 </ListView>
                 

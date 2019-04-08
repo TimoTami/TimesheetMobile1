@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using TimesheetMobile1.Models;
@@ -28,10 +29,22 @@ namespace TimesheetMobile1
 		}
         public async void NewUser(object sender, EventArgs e)
         {
+            string passisana = "";
             if (UusiSana.Text == UusiSanaUudestaan.Text)
             {
                 try
                 {
+                    using (var sha = SHA256.Create())
+                    {
+                        var bytes = Encoding.UTF8.GetBytes(UusiSana.Text);
+                        var hash = sha.ComputeHash(bytes);
+
+
+                        passisana = Convert.ToBase64String(hash);
+
+
+
+                    }
 
                     NewUserModel data = new NewUserModel()
                     {
@@ -40,7 +53,7 @@ namespace TimesheetMobile1
                         phonenumber = PNum.Text,
                         email = SPos.Text,
                         username = UusiTunnus.Text,
-                        password = UusiSana.Text
+                        password = passisana
                     };
 
 
