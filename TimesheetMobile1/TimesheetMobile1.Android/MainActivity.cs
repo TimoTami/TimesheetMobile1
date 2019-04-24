@@ -7,6 +7,9 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Locations;
+using Android.Support.V4.Content;
+using Android;
+using System.Collections.Generic;
 
 namespace TimesheetMobile1.Droid
 {
@@ -43,8 +46,25 @@ namespace TimesheetMobile1.Droid
 
             base.OnCreate(bundle);
 
+            //...
+            
+            Xamarin.Essentials.Platform.Init(this, bundle); // add this line to your code, it may also be called: bundle
+                                                                        //...
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App());
+
+            if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) != Permission.Granted)
+            {
+                List<string> permission = new List<string>();
+                permission.Add(Manifest.Permission.AccessFineLocation);
+
+                if (permission.Count > 0)
+                {
+                    string[] array = permission.ToArray();
+
+                    RequestPermissions(array, array.Length);
+                }
+            }
 
             try
             {
@@ -61,6 +81,13 @@ namespace TimesheetMobile1.Droid
 
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
+            LoadApplication(new App());
+        }
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

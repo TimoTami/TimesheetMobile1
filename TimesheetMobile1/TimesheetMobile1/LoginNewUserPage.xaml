@@ -4,19 +4,43 @@
              x:Class="TimesheetMobile1.LoginNewUserPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
 
-            <Entry x:Name="ENimi" Text="Etunimi"></Entry>
-            <Entry x:Name="SNimi" Text="Sukunimi"></Entry>
-            <Entry x:Name="PNum" Text="Puh. numero"></Entry>
-            <Entry x:Name="SPos" Text="Sähköposti"></Entry>
-            <Entry x:Name="UusiTunnus" Text="Käyttäjätunnus"></Entry>
-            <Entry x:Name="UusiSana" IsPassword="True" Text="Salasana"></Entry>
-            <Entry x:Name="UusiSanaUudestaan" IsPassword="True" Text="Salasana uudestaan"></Entry>
+            <StackLayout  Orientation="Horizontal">
+                <Label Text="Etunimi" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="100"/>
+                <Entry x:Name="ENimi"  HorizontalOptions="FillAndExpand" ></Entry>
+            </StackLayout>
 
-            <Button Text="Valmis" Clicked="NewUser"></Button>
+            <StackLayout  Orientation="Horizontal">
+                <Label Text="Sukunimi" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="100"/>
+                <Entry x:Name="SNimi"  HorizontalOptions="FillAndExpand" ></Entry>
+        </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Puh. numero" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="100"/>
+                <Entry x:Name="PNum"  HorizontalOptions="FillAndExpand" ></Entry>
+        </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Sähköposti" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="100"/>
+                <Entry x:Name="SPos"  HorizontalOptions="FillAndExpand" ></Entry>
+        </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Käyttäjätunnus" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="100"/>
+                <Entry x:Name="UusiTunnus"  HorizontalOptions="FillAndExpand" ></Entry>
+        </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Salasana" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="100"/>
+                <Entry x:Name="UusiSana" IsPassword="True"  HorizontalOptions="FillAndExpand" ></Entry>
+        </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Salasana uudestaan" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="100"/>
+                <Entry x:Name="UusiSanaUudestaan" IsPassword="True"  HorizontalOptions="FillAndExpand" ></Entry>
+        </StackLayout>
+
+        <Button Text="Valmis" Clicked="NewUser"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

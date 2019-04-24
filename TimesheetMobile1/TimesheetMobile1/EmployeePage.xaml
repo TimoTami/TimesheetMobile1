@@ -1,21 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage Padding="0" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TimesheetMobile1.EmployeePage">
+             x:Class="TimesheetMobile1.EmployeePage"
+             NavigationPage.HasNavigationBar="False"  >
+    
     <ContentPage.Content>
+        
         <StackLayout Padding="0">
             
-            <Button Text="Load Employees" Clicked="LoadEmployees"></Button>
+            <!--<Button Text="Load Workassignments" Clicked="LoadWorkassignments"></Button>-->
+            <Button Text="Listaa työt" Clicked="ListWorkAssignments"></Button>
             <Button Text="Kirjaudu ulos" Clicked="Logout"></Button>
 
-            <ListView Margin="10,10,10,10" HeightRequest="400" x:Name="employeeList">
+            <ListView Margin="10,10,10,10" MinimumHeightRequest="400" x:Name="employeeList" VerticalOptions="Fill" HasUnevenRows="True">
                 
             </ListView>
             <Image Margin="10,10,10,10" HeightRequest="600" WidthRequest="600" x:Name="employeeImage"/>
 
-            <Button Text="Listaa työt" Clicked="ListWorkAssignments"></Button>
+            
 
         </StackLayout>
+        
         
     </ContentPage.Content>
     

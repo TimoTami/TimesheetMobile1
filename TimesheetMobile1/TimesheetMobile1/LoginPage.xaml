@@ -8,9 +8,13 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
 
-            <Entry x:Name="Tunnus1" Text="Käyttäjätunnus"></Entry>
+            <Entry x:Name="Tunnus1" Text=""></Entry>
             <Entry x:Name="Sana1"  IsPassword="True" ></Entry>
-
+            <StackLayout>
+                <Label x:Name="MuistaMinutLabel" Text="Muista minut">
+                </Label>
+                <Switch x:Name="MuistaMinut" IsToggled="false" HorizontalOptions="Start"/>
+            </StackLayout>
             <Button Text="Kirjaudu sisään" Clicked="KirjauduSisaan"></Button>
 
             <Button Text="Lisää uusi käyttäjä" Clicked="UusiKayttaja"></Button>

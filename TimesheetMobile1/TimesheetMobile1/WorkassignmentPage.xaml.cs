@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using TimesheetMobile1.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,6 +19,7 @@ namespace TimesheetMobile1
 		{
 			InitializeComponent ();
             workassignmentList.ItemsSource = new string[] { "" };
+            LoadWorkassignments();
 
             Task.Factory.StartNew(async () =>
             {
@@ -32,10 +34,8 @@ namespace TimesheetMobile1
                 }
             });
 
-            //latitudeLabel.Text = GpsLocationModel.Latitude.ToString("0.000");
-            //longitudeLabel.Text = GpsLocationModel.Longitude.ToString("0.000");
         }
-        public async void LoadWorkassignments(object sender, EventArgs e)
+        public async void LoadWorkassignments()
         {
 
             try
@@ -55,13 +55,7 @@ namespace TimesheetMobile1
             }
 
         }
-        public async void LoadEmployees(object sender, EventArgs e)
-        {
-            
-            await Navigation.PushAsync(new EmployeePage());
-            
 
-        }
         public async void StartWork(object sender, EventArgs e)
         {
             string assignmentName = workassignmentList.SelectedItem?.ToString();
@@ -150,6 +144,7 @@ namespace TimesheetMobile1
         }
         public async void Logout(object sender, EventArgs e)
         {
+            SecureStorage.RemoveAll();
             await Navigation.PushAsync(new LoginPage());
         }
     }

@@ -16,12 +16,6 @@ namespace TimesheetMobile1
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class LoginNewUserPage : ContentPage
 	{
-        //string etunimi;
-        //string sukunimi;
-        //string sposti;
-        //string puhNum;
-        //string username;
-        //string password;
 
         public LoginNewUserPage ()
 		{
@@ -39,11 +33,7 @@ namespace TimesheetMobile1
                         var bytes = Encoding.UTF8.GetBytes(UusiSana.Text);
                         var hash = sha.ComputeHash(bytes);
 
-
                         passisana = Convert.ToBase64String(hash);
-
-
-
                     }
 
                     NewUserModel data = new NewUserModel()
@@ -57,11 +47,8 @@ namespace TimesheetMobile1
                     };
 
 
-
                     HttpClient client = new HttpClient();
-                    
                     client.BaseAddress = new Uri("https://joonanmobiili.azurewebsites.net/");
-                    
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     var input = JsonConvert.SerializeObject(data);
                     var content = new StringContent(input, Encoding.UTF8, "application/json");
@@ -70,9 +57,8 @@ namespace TimesheetMobile1
                     {
                         var errorMessage1 = Xamarin_reg.Content.ReadAsStringAsync().Result.Replace("\\", "").Trim(new char[1]
                         {
-                '"'
+                        '"'
                         });
-                        //Toast.MakeText(this, errorMessage1, ToastLength.Long).Show();
                         await DisplayAlert("", errorMessage1, "Close");
                         await Navigation.PushAsync(new LoginPage());
                     }
@@ -80,41 +66,24 @@ namespace TimesheetMobile1
                     {
                         var errorMessage1 = Xamarin_reg.Content.ReadAsStringAsync().Result.Replace("\\", "").Trim(new char[1]
                         {
-                '"'
+                        '"'
                         });
                         await DisplayAlert("", errorMessage1, "Close");
-                        //Toast.MakeText(this, errorMessage1, ToastLength.Long).Show();
                     }
 
-
-                    //HttpClient client = new HttpClient();
-                    //client.BaseAddress = new Uri("http://joonanmobiili.azurewebsites.net/");
-                    //string input = JsonConvert.SerializeObject(data);
-                    //StringContent content = new StringContent(input, Encoding.UTF8, "application/json");
-
-                    //HttpResponseMessage message = await client.PostAsync("/api/employee", content);
-                    //string reply = await message.Content.ReadAsStringAsync();
-                    //bool success = JsonConvert.DeserializeObject<bool>(reply);
                 }
 
                 catch (Exception)
                 {
                     await DisplayAlert("Alert", "Täytä kaikki kentät", "Close");
-                    //string errorMessage = ex.GetType().Name + ": " + ex.Message + " Täytä kaikki kentät";
 
                 }
-
-
 
             }
             else
             {
                 await DisplayAlert("Alert", "Salasanat ei täsmää", "Close");
             }
-
-
-
-            
 
         }
     }
