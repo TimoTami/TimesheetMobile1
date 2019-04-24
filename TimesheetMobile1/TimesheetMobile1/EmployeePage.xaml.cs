@@ -53,7 +53,7 @@ namespace TimesheetMobile1
             try
             {
                 HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri("http://joonanmobiili.azurewebsites.net");
+                client.BaseAddress = new Uri("https://joonanmobiili.azurewebsites.net");
                 string json = await client.GetStringAsync("/api/employee");
                 employees = JsonConvert.DeserializeObject<string[]>(json);
 
@@ -75,7 +75,7 @@ namespace TimesheetMobile1
                 try
                 {
                     HttpClient client = new HttpClient();
-                    client.BaseAddress = new Uri("http://joonanmobiili.azurewebsites.net");
+                    client.BaseAddress = new Uri("https://joonanmobiili.azurewebsites.net");
                     string json = await client.GetStringAsync("/api/employee?employeeName=" + employee);
                     byte[] imageBytes = JsonConvert.DeserializeObject<byte[]>(json);
 

@@ -41,7 +41,7 @@ namespace TimesheetMobile1
             try
             {
                 HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri("http://joonanmobiili.azurewebsites.net/");
+                client.BaseAddress = new Uri("https://joonanmobiili.azurewebsites.net/");
                 string json = await client.GetStringAsync("/api/workassignment");
                 string[] workassignments = JsonConvert.DeserializeObject<string[]>(json);
 
@@ -74,7 +74,7 @@ namespace TimesheetMobile1
                     };
 
                     HttpClient client = new HttpClient();
-                    client.BaseAddress = new Uri("http://joonanmobiili.azurewebsites.net/");
+                    client.BaseAddress = new Uri("https://joonanmobiili.azurewebsites.net/");
                     string input = JsonConvert.SerializeObject(data);
                     StringContent content = new StringContent(input, Encoding.UTF8, "application/json");
 
@@ -118,7 +118,7 @@ namespace TimesheetMobile1
                     };
 
                     HttpClient client = new HttpClient();
-                    client.BaseAddress = new Uri("http://joonanmobiili.azurewebsites.net/");
+                    client.BaseAddress = new Uri("https://joonanmobiili.azurewebsites.net/");
                     string input = JsonConvert.SerializeObject(data);
                     StringContent content = new StringContent(input, Encoding.UTF8, "application/json");
 
